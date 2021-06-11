@@ -1,0 +1,52 @@
+<h1 id="tableLabel">Edit Student</h1>
+
+<table class="example-full-width" cellspacing="0">
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Course's name</mat-label>
+        <input matInput [(ngModel)]="course.name" />
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Credits</mat-label>
+        <input matInput [(ngModel)]="course.credits" />
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Teacher</mat-label>
+        <mat-select [(ngModel)]="course.teacher">
+          <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">
+            {{teacher.firstName}} {{teacher.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Classroom</mat-label>
+        <input matInput [(ngModel)]="course.classroom" />
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Enrolled</mat-label>
+        <input matInput [(ngModel)]="course.enrolled" />
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
+
+<div class="example-button-row">
+  <button mat-raised-button color="accent" (click)="editCourse()">Edit Course</button>
+</div>

@@ -1,0 +1,65 @@
+<h1 id="tableLabel">Add Attendance</h1>
+<table class="example-full-width" cellspacing="0">
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Attendance's Date</mat-label>
+        <input type="date" matInput [(ngModel)]="attendance.date" />
+      </mat-form-field>
+
+      <!--<mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]  ="picker" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>-->
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Course</mat-label>
+        <mat-select [(ngModel)]="attendance.course">
+          <mat-option *ngFor="let course of courses" [value]="course.id">
+            {{course.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Teacher</mat-label>
+        <mat-select [(ngModel)]="attendance.teacher">
+          <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">
+            {{teacher.firstName}} {{teacher.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Classroom</mat-label>
+        <input matInput [(ngModel)]="attendance.classroom" />
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>count</mat-label>
+        <input matInput [(ngModel)]="attendance.count" />
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
+
+<div class="example-button-row">
+  <button mat-raised-button color="accent" (click)="saveAttendance()">Save Attendance</button>
+</div>

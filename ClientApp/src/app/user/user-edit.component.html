@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Edit Student</h1>
+
+<table class="example-full-width" cellspacing="0">
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>User's name</mat-label>
+        <input matInput [(ngModel)]="user.username" />
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="user.password" />
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
+
+<div class="example-button-row">
+  <button mat-raised-button color="accent" (click)="editUser()">Edit User</button>
+</div>

@@ -1,0 +1,96 @@
+<h1 id="tableLabel">Attendance</h1>
+
+<p>This component demonstrates fetching Attendance from the server</p>
+
+  <div class="example-button-row">
+    <button mat-raised-button color="accent" [routerLink]="['/attendance-add']">Add Attendance</button>
+  </div>
+
+  <p *ngIf="!dataSource"><em>Loading...</em></p>
+
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <!-- Position Column -->
+    <!--<ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let attendance"> {{attendance.id}} </td>
+    </ng-container>-->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let attendance"> {{attendance.date | date: 'shortDate'}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="course">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Course </th>
+      <td mat-cell *matCellDef="let attendance">
+        <div *ngFor="let course of courses">
+          <div *ngIf="attendance.course== course.id">
+            {{course.name}}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="teacher">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Teacher </th>
+      <td mat-cell *matCellDef="let attendance">
+        <div *ngFor="let teacher of teachers">
+          <div *ngIf="attendance.teacher== teacher.id">
+            {{teacher.firstName}} {{teacher.lastName}}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="classroom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Classroom </th>
+      <td mat-cell *matCellDef="let attendance"> {{attendance.classroom}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Count </th>
+      <td mat-cell *matCellDef="let attendance"> {{attendance.count}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef style="width:15%">Actions</th>
+      <td mat-cell *matCellDef="let attendance">
+
+        <section>
+          <div class="example-button-row">
+
+            <button mat-icon-button color="accent" aria-label="Example icon button with a home icon" matTooltip="Edit">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLink]="['/attendance-edit',attendance.id]" style="cursor:pointer">edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="accent" aria-label="Example icon button with a home icon" matTooltip="Delete">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteAttendance(attendance)" style="cursor:pointer">delete</mat-icon>
+            </button>
+
+          </div>
+        </section>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
